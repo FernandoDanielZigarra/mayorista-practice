@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { getAllCategories, getCategoryById, createCategory, updateCategory, deleteCategory } = require('../controllers/categoryController');
-const { validateCategoryData, handleValidationErrors } = require('../middlewares/categoryMiddlewares');
+const { validateCategoryData, handleValidationErrors } = require('../middlewares/categoryValidationMiddleware');
 
 router.get('/categories', getAllCategories);
 router.get('/categories/:id', getCategoryById);
