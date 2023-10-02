@@ -7,8 +7,10 @@ const authenticate = require('../middlewares/authMiddleware');
 router.post('/login', loginUser); // Endpoint para iniciar sesión
 
 // Rutas protegidas (requieren autenticación)
-router.use(authenticate); // Aplica el middleware de autenticación a las rutas siguientes
-router.get('/', getAllUsers); // Obtener todos los usuarios
-router.post('/', createUser); // Crear un nuevo usuario
+// router.use(authenticate); // Comenta temporalmente el uso del middleware
+
+// Nueva ruta que requiere autenticación (cuando estés listo)
+router.get('/', authenticate, getAllUsers); // Obtener todos los usuarios
+router.post('/', authenticate, createUser); // Crear un nuevo usuario
 
 module.exports = router;

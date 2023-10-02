@@ -1,0 +1,17 @@
+{
+    "products": [
+      {
+        "name": "Producto 1",
+        "description": "Descripción del Producto 1",
+        "category_id": "CATEGORIA_1_ID",
+        "images": ["IMAGEN_1_ID", "IMAGEN_2_ID"]
+      },
+      {
+        "name": "Producto 2",
+        "description": "Descripción del Producto 2",
+        "category_id": "CATEGORIA_2_ID",
+        "images": ["IMAGEN_3_ID"]
+      }
+    ]
+  }
+  

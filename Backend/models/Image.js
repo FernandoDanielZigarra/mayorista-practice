@@ -10,9 +10,9 @@ const imageSchema = new mongoose.Schema({
     ref: 'Product',
     required: true
   }
-},
-{
+}, {
   timestamps: true
 });
 
 module.exports = mongoose.model('Image', imageSchema);
+

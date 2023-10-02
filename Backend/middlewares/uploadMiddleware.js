@@ -1,15 +1,16 @@
 const multer = require('multer');
+const path = require('path');
 
-// Configura el almacenamiento y el nombre del archivo
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Define el directorio donde se guardarán los archivos subidos
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Define el nombre del archivo
-  }
+    destination: (req, file, callback) => {
+        callback(null, 'images')
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.fieldname + ' ' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage
 });
-
-const upload = multer({ storage: storage });
-
-module.exports = upload;
+module.exports = upload
