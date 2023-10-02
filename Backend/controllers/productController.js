@@ -22,10 +22,9 @@ module.exports = {
   createProduct: async (req, res) => {
     try {
       const { name, description, offers, price, category_id} = req.body;
-   
-
+      
       // Guardar el producto
-      /* const product = new Product({
+      const product = new Product({
         name,
         description,
         offers,
@@ -33,20 +32,17 @@ module.exports = {
         category_id
       });
       await product.save();
- */
+
       // Asociar imágenes con el producto
      
-      
-     /*  const newImage = new Image({
-        name: image.originalname, // Puedes ajustar el nombre según tus necesidades
+      const newImage = new Image({
+        name: req.file.originalname,
         product_id: product._id
-      }); */
+      });
+      await newImage.save();
       
-      /* await newImage.save();
-      product.images.push(newImage._id); */
 
-
-      res.json(req.body);
+      res.json(product);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
