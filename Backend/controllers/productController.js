@@ -3,7 +3,8 @@ const Image = require('../models/Image');
 module.exports = {
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.find();
+      const products = await Product.find({}).populate("image","name").populate("category_id","name").select('-__v');
+      
       res.json(products);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -23,25 +24,20 @@ module.exports = {
     try {
       const { name, description, offers, price, category_id} = req.body;
       
-      // Guardar el producto
+      const newImage = new Image({
+        name: req.file.filename,
+      });
+      await newImage.save();
+
       const product = new Product({
         name,
         description,
         offers,
         price,
-        category_id
+        category_id,
+        image: newImage._id
       });
-      await product.save();
-
-      // Asociar imágenes con el producto
-     
-      const newImage = new Image({
-        name: req.file.originalname,
-        product_id: product._id
-      });
-      await newImage.save();
-      
-
+      await product.save()
       res.json(product);
     } catch (error) {
       res.status(500).json({ message: error.message });
