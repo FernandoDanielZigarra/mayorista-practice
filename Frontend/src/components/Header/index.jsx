@@ -62,16 +62,16 @@ function Header() {
           </span>
         </div>
 
-        <nav className="hidden bg-black w-screen top-0 left-0 z-10 bg-opacity-50  md:flex md:bg-transparent">
+        <nav className={`${open ? "fixed" : "hidden"} bg-black w-screen top-0 left-0 z-10 bg-opacity-50  md:flex md:bg-transparent`}>
           <ul className="flex text-white flex-col justify-center items-center h-screen text-2xl gap-5 md:flex-row md:h-[5rem] md:text-lg md:w-screen md:pr-8 md:justify-end">
             <li>
-              <Link to={"/"}>Inicio</Link>
+              <Link to={"/"} onClick={() => setOpen(false)}>Inicio</Link>
             </li>
             <li>
-              <Link to={"/products"}>Productos</Link>
+              <Link to={"/products"} onClick={() => setOpen(false)}>Productos</Link>
             </li>
             <li>
-              <Link to={"/contact"}>Contacto</Link>
+              <Link to={"/contact"} onClick={() => setOpen(false)}>Contacto</Link>
             </li>
           </ul>
         </nav>
