@@ -1,10 +1,13 @@
 const Product = require('../models/Products');
 const Image = require('../models/Image');
+const { storage, upload } = require('../middlewares/uploadMiddleware');
+const {uploadFile} = require('../utils/utilsFirebase')
+
 module.exports = {
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.find({}).populate("image","name").populate("category_id","name").select('-__v');
-      
+      const products = await Product.find({}).populate("image", "name").populate("category_id", "name").select('-__v');
+
       res.json(products);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -22,10 +25,16 @@ module.exports = {
 
   createProduct: async (req, res) => {
     try {
-      const { name, description, offers, price, category_id} = req.body;
+
+      const newImage = uploadFile(req.file)
+
+      res.json(newImage)
+
       
+      /* const { name, description, offers, price, category_id } = req.body;
+
       const newImage = new Image({
-        name: req.file.filename,
+        urlImage: req.file.filename,
       });
       await newImage.save();
 
@@ -38,7 +47,7 @@ module.exports = {
         image: newImage._id
       });
       await product.save()
-      res.json(product);
+      res.json(product); */
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
