@@ -7,7 +7,7 @@ const { getAllProducts, getProductById, createProduct, updateProduct, deleteProd
 router.get('/products', getAllProducts);
 router.get('/products/:id', getProductById);
 
-router.post('/products', upload.single('image'),/*  validateProductData, */createProduct);
+router.post('/products', upload.single('file'), validateProductData,createProduct);
 
 router.put('/products/:id', updateProduct);
 router.delete('/products/:id', deleteProduct);
