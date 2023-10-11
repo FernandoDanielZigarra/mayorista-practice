@@ -8,7 +8,7 @@ const {uploadFile} = require('../utils/utilsFirebase');
 module.exports = {
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.find({}).populate("image", "name").populate("category_id", "name").select('-__v');
+      const products = await Product.find({}).populate("image", "urlImage").populate("category_id", "name").select('-__v');
 
       res.json(products);
     } catch (error) {
