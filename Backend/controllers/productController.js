@@ -27,15 +27,13 @@ module.exports = {
 
   createProduct: async (req, res) => {
     try {
+      const { name, description, offers, price, category_id } = req.body;
       const fileName = `${"Product" + '-' + Date.now() + path.extname(req.file.originalname)}`
       const uploadImage = await uploadFile(req.file,"product",fileName);
-      res.json(uploadImage);
-
-
-      /* const { name, description, offers, price, category_id } = req.body;
 
       const newImage = new Image({
-        urlImage: req.file.filename,
+        filename: fileName,
+        urlImage: uploadImage,
       });
       await newImage.save();
 
@@ -48,7 +46,7 @@ module.exports = {
         image: newImage._id
       });
       await product.save()
-      res.json(product); */
+      res.json(product);
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

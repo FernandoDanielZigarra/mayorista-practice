@@ -1,5 +1,4 @@
 const multer = require('multer');
-
 const firebaseConfig = require('../config/firebase');
 const { initializeApp } = require('firebase/compat/app');
 const { getStorage } = require('firebase/storage')
