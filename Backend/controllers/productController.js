@@ -27,11 +27,17 @@ module.exports = {
 
   createProduct: async (req, res) => {
     try {
+<<<<<<< HEAD
       const { name, description, offers, price, category_id } = req.body;
       const imageDefault = "https://firebasestorage.googleapis.com/v0/b/react-firebase-example-66176.appspot.com/o/product%2Fproduct-image-default.jpg?alt=media&token=90e8c25b-f59b-4142-b424-2f332f2b47a0&_gl=1*129ue9z*_ga*MTQzNjkxNDYyMi4xNjk0MDkzODkx*_ga_CW55HF8NVT*MTY5NzA1NDkxNS4yOC4xLjE2OTcwNTcxNjguNjAuMC4w"
 
       const fileName = req.file ? `${"Product" + '-' + Date.now() + path.extname(req.file.originalname)}` : "product-image-default.jpg"
       const uploadImage = req.file ? await uploadFile(req.file, "product", fileName) : imageDefault
+=======
+      const { name, description, discount, price, category_id } = req.body;
+      const fileName = `${"Product" + '-' + Date.now() + path.extname(req.file.originalname)}`
+      const uploadImage = await uploadFile(req.file, "product", fileName);
+>>>>>>> a799978b0389531995dda958aea575bf132d5ea6
 
       const newImage = new Image({
         filename: fileName,
@@ -42,7 +48,7 @@ module.exports = {
       const product = new Product({
         name,
         description,
-        offers,
+        discount,
         price,
         category_id,
         image: newImage._id
