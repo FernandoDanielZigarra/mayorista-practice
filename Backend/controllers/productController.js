@@ -1,7 +1,7 @@
 const Product = require('../models/Products');
 const Image = require('../models/Image');
 const path = require('path')
-const {uploadFile} = require('../utils/utilsFirebase');
+const { uploadFile } = require('../utils/utilsFirebase');
 
 
 
@@ -27,9 +27,9 @@ module.exports = {
 
   createProduct: async (req, res) => {
     try {
-      const { name, description, offers, price, category_id } = req.body;
+      const { name, description, discount, price, category_id } = req.body;
       const fileName = `${"Product" + '-' + Date.now() + path.extname(req.file.originalname)}`
-      const uploadImage = await uploadFile(req.file,"product",fileName);
+      const uploadImage = await uploadFile(req.file, "product", fileName);
 
       const newImage = new Image({
         filename: fileName,
@@ -40,7 +40,7 @@ module.exports = {
       const product = new Product({
         name,
         description,
-        offers,
+        discount,
         price,
         category_id,
         image: newImage._id
