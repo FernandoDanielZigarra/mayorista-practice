@@ -1,7 +1,7 @@
 const Product = require('../models/Products');
 const Image = require('../models/Image');
 const path = require('path')
-const {uploadFile} = require('../utils/utilsFirebase');
+const { uploadFile } = require('../utils/utilsFirebase');
 
 
 
@@ -15,7 +15,7 @@ module.exports = {
       res.status(500).json({ message: error.message });
     }
   },
-
+ 
   getProductById: async (req, res) => {
     try {
       const product = await Product.findById(req.params.id);
@@ -28,8 +28,10 @@ module.exports = {
   createProduct: async (req, res) => {
     try {
       const { name, description, offers, price, category_id } = req.body;
-      const fileName = `${"Product" + '-' + Date.now() + path.extname(req.file.originalname)}`
-      const uploadImage = await uploadFile(req.file,"product",fileName);
+      const imageDefault = "https://firebasestorage.googleapis.com/v0/b/react-firebase-example-66176.appspot.com/o/product%2Fproduct-image-default.jpg?alt=media&token=90e8c25b-f59b-4142-b424-2f332f2b47a0&_gl=1*129ue9z*_ga*MTQzNjkxNDYyMi4xNjk0MDkzODkx*_ga_CW55HF8NVT*MTY5NzA1NDkxNS4yOC4xLjE2OTcwNTcxNjguNjAuMC4w"
+
+      const fileName = req.file ? `${"Product" + '-' + Date.now() + path.extname(req.file.originalname)}` : "product-image-default.jpg"
+      const uploadImage = req.file ? await uploadFile(req.file, "product", fileName) : imageDefault
 
       const newImage = new Image({
         filename: fileName,

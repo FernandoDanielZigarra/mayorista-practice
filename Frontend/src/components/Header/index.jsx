@@ -1,8 +1,11 @@
 /* import { Link } from "react-router-dom"; */
-import { GiHamburgerMenu } from "react-icons/gi";
-import { ImCross } from "react-icons/im";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+/* import { GiHamburgerMenu } from "react-icons/gi";
+import { ImCross } from "react-icons/im"; */
+/* import { useState } from "react"; */
+import { NavLink } from "react-router-dom";
+import { AiOutlineHome } from 'react-icons/ai'
+import { TbPaperBag } from 'react-icons/tb'
+import { IoLogoWhatsapp } from 'react-icons/io5'
 
 /* const Bars = () => {
   <div id="bars">
@@ -41,18 +44,19 @@ function Link({ to, children }) {
 }
  */
 function Header() {
-  const [open, setOpen] = useState(false);
+  /* const [open, setOpen] = useState(false); */
+
   return (
-    <>
-      <header className="w-screen h-[5rem] bg-slate-700 flex items-center justify-between px-8 py-2 z-10">
-        <div className="w-[4rem] rounded-full overflow-hidden">
+    <div className="fixed bottom-0 w-screen z-30">
+      <header className="w-full bg-slate-700 flex items-center justify-between py-5 z-10 rounded-t-2xl">
+        {/* <div className="w-[4rem] rounded-full overflow-hidden">
           <img
             className="object-cover"
             src="https://i.pinimg.com/1200x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg"
             alt=""
           />
-        </div>
-        <div
+        </div> */}
+        {/* <div
           onClick={() => setOpen(!open)}
           className="cursor-pointer transition-all duration-500"
           title={open ? "Cerrar menú" : "Abrir menú"}
@@ -60,23 +64,44 @@ function Header() {
           <span className="text-2xl text-white absolute z-20 top-[2rem] right-[2.5rem] md:hidden">
             {open ? <ImCross /> : <GiHamburgerMenu />}
           </span>
-        </div>
+        </div> */}
 
-        <nav className={`${open ? "fixed" : "hidden"} bg-black w-screen top-0 left-0 z-10 bg-opacity-50  md:flex md:bg-transparent`}>
-          <ul className="flex text-white flex-col justify-center items-center h-screen text-2xl gap-5 md:flex-row md:h-[5rem] md:text-lg md:w-screen md:pr-8 md:justify-end">
-            <li>
-              <Link to={"/"} onClick={() => setOpen(false)}>Inicio</Link>
+        <nav className='w-full '>
+          <ul className="flex justify-evenly gap-6">
+            <li className="rounded-[50%] flex justify-center items-center ">
+              <NavLink to={"/"} className={({isActive})=>{
+                return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
+              }}>
+                <AiOutlineHome className="text-2xl" />
+                <span className="text-sm">
+                  Inicio
+                </span>
+              </NavLink>
             </li>
-            <li>
-              <Link to={"/products"} onClick={() => setOpen(false)}>Productos</Link>
+            <li className="rounded-[50%] flex justify-center items-center ">
+            <NavLink to={"/products"} className={({isActive})=>{
+                return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
+              }}>
+                <TbPaperBag className="text-2xl" />
+                <span className="text-sm">
+                  Productos
+                </span>
+              </NavLink>
             </li>
-            <li>
-              <Link to={"/contact"} onClick={() => setOpen(false)}>Contacto</Link>
+            <li className="rounded-[50%] flex justify-center items-center ">
+              <NavLink to={"/contact"} className={({isActive})=>{
+                return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
+              }}>
+                <IoLogoWhatsapp className="text-2xl" />
+                <span className="text-sm">
+                  Contacto
+                </span>
+              </NavLink>
             </li>
           </ul>
         </nav>
       </header>
-    </>
+    </div>
   );
 }
 
