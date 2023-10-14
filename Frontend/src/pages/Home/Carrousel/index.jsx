@@ -70,7 +70,7 @@ function Carrousel() {
     setCourrentIndex(index);
   };
   return (
-    <div className="relative w-[90%] h-[30rem] mx-auto bg-transparent rounded-2xl overflow-hidden shadow-lg shadow-black">
+    <div className="relative w-[90%] h-[20rem] mx-auto bg-transparent rounded-2xl overflow-hidden shadow-lg shadow-black">
       <div className="w-full h-[30rem]">
         <div
           className="absolute text-black top-[50%] translate-y-[-50%] text-2xl font-bold left-0 p-[5px] bg-slate-400 rounded-[50%] w-[2.6rem] h-[2.6rem] text-center bg-opacity-50"
@@ -84,7 +84,7 @@ function Carrousel() {
         >
           &#10093;
         </div>
-        <div className="w-full h-[30rem] overflow-hidden">
+        <div className="w-full h-[20rem] overflow-hidden">
           <ul className="list-none whitespace-nowrap" ref={listRef}>
             {images.map((image) => (
               <li
@@ -94,7 +94,7 @@ function Carrousel() {
                 <img
                   src={image.url}
                   alt=""
-                  className="w-full h-[30rem] object-cover rounded-xl"
+                  className="w-full h-[20rem] object-cover rounded-xl"
                 />
               </li>
             ))}

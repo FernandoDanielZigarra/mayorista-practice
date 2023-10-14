@@ -45,33 +45,17 @@ function Link({ to, children }) {
  */
 function Header() {
   /* const [open, setOpen] = useState(false); */
+  const className = ({ isActive }) => {
+    return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
+  }
 
   return (
-    <div className="fixed bottom-0 w-screen z-30">
-      <header className="w-full bg-slate-700 flex items-center justify-between py-5 z-10 rounded-t-2xl">
-        {/* <div className="w-[4rem] rounded-full overflow-hidden">
-          <img
-            className="object-cover"
-            src="https://i.pinimg.com/1200x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg"
-            alt=""
-          />
-        </div> */}
-        {/* <div
-          onClick={() => setOpen(!open)}
-          className="cursor-pointer transition-all duration-500"
-          title={open ? "Cerrar menú" : "Abrir menú"}
-        >
-          <span className="text-2xl text-white absolute z-20 top-[2rem] right-[2.5rem] md:hidden">
-            {open ? <ImCross /> : <GiHamburgerMenu />}
-          </span>
-        </div> */}
-
+    
+      <header className="fixed bottom-0 w-full bg-slate-700 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2">
         <nav className='w-full '>
           <ul className="flex justify-evenly gap-6">
             <li className="rounded-[50%] flex justify-center items-center ">
-              <NavLink to={"/"} className={({isActive})=>{
-                return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
-              }}>
+              <NavLink to={"/"} className={className}>
                 <AiOutlineHome className="text-2xl" />
                 <span className="text-sm">
                   Inicio
@@ -79,9 +63,7 @@ function Header() {
               </NavLink>
             </li>
             <li className="rounded-[50%] flex justify-center items-center ">
-            <NavLink to={"/products"} className={({isActive})=>{
-                return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
-              }}>
+            <NavLink to={"/products"} className={className}>
                 <TbPaperBag className="text-2xl" />
                 <span className="text-sm">
                   Productos
@@ -89,9 +71,7 @@ function Header() {
               </NavLink>
             </li>
             <li className="rounded-[50%] flex justify-center items-center ">
-              <NavLink to={"/contact"} className={({isActive})=>{
-                return 'flex flex-col justify-center items-center ' + (isActive ? 'text-blue-500' : 'text-white')
-              }}>
+              <NavLink to={"/contact"} className={className}>
                 <IoLogoWhatsapp className="text-2xl" />
                 <span className="text-sm">
                   Contacto
@@ -101,7 +81,7 @@ function Header() {
           </ul>
         </nav>
       </header>
-    </div>
+    
   );
 }
 
