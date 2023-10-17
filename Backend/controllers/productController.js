@@ -38,6 +38,8 @@ module.exports = {
       res.status(500).json({ mensaje: 'Error al buscar productos.' });
     }
   }
+
+
   ,
   createProduct: async (req, res) => {
     try {

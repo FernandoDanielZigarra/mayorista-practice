@@ -7,7 +7,7 @@ const { getAllProducts, getProductById, createProduct, updateProduct, deleteProd
 router.get('/products', getAllProducts);
 router.get('/products/:id', getProductById);
 
-// Ruta para obtener productos por categoría
+
 router.get('/products/categoria/:categoriaID', getProductsByCategory);
 
 router.post('/products', upload.single('image'), validateProductData, createProduct);
