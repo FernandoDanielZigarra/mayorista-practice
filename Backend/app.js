@@ -8,7 +8,7 @@ const indexRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
 const categoryRouter = require('./routes/categoryRoutes');
 const connectDB = require('./config/db');
-const firebsae = require("firebase/app");
+
 
 
 const PORT = process.env.PORT || 3000;
