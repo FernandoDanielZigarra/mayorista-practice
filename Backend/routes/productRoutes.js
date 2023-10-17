@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { upload } = require('../middlewares/uploadMiddleware');
 const validateProductData = require('../middlewares/validationMiddleware');
-const { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct, getProductsByCategory } = require('../controllers/productController');
+const { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct } = require('../controllers/productController');
 
 router.get('/products', getAllProducts);
 router.get('/products/:id', getProductById);
 
 
-router.get('/products/categoria/:categoriaID', getProductsByCategory);
+
 
 router.post('/products', upload.single('image'), validateProductData, createProduct);
 router.put('/products/:id', updateProduct);
