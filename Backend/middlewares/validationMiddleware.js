@@ -13,10 +13,10 @@ function validateProductData(req, res, next) {
         return res.status(400).json({ message: 'El campo "price" es requerido y debe ser un número.' });
     }
     
-    if(price => 100){
+    /* if(price >= 100){
         return res.status(400).json({ message: 'El campo "price" debe ser menor a 100.' });
     }
-
+ */
     next();
 }
 

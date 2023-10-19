@@ -23,11 +23,12 @@ const productSchema = new mongoose.Schema(
       ref: "Category",
       required: true,
     },
-    image:{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Image",
-
-    }
+    images: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Image",
+      },
+    ],
   },
   {
     timestamps: true

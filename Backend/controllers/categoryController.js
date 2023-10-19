@@ -22,7 +22,7 @@ module.exports = {
   getProductsByCategory: async (req, res) => {
     try {
       const categoriaID = req.params.categoriaID;
-      const productos = await Product.find({ category_id: categoriaID }).populate("image", "urlImage").populate("category_id", "name").select('-__v');
+      const productos = await Product.find({ category_id: categoriaID }).populate("images", "urlImage").populate("category_id", "name").select('-__v');
 
       if (productos.length > 0) {
         res.json(productos);
