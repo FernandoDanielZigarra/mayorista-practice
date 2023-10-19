@@ -51,7 +51,7 @@ function Header() {
 
   return (
     
-      <header className="fixed bottom-0 w-full bg-slate-700 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2">
+      <header className="fixed bottom-0 w-full bg-mariner-800 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2">
         <nav className='w-full '>
           <ul className="flex justify-evenly gap-6">
             <li className="rounded-[50%] flex justify-center items-center ">

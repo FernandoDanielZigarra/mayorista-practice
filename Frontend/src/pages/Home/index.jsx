@@ -7,7 +7,7 @@ function Home() {
   const offersHome = data ? data.sort((a,b) => b.discount - a.discount).slice(0, 6) : [];
 
   return (
-    <main className="flex flex-col bg-slate-700 rounded-none w-full">
+    <main className="flex flex-col bg-mariner-900 rounded-none w-full">
       <div className="flex items-center justify-center flex-col gap-1 mt-3">
         <img src="https://i.pinimg.com/1200x/ec/d9/c2/ecd9c2e8ed0dbbc96ac472a965e4afda.jpg" alt="" className="w-16 h-16 rounded-[50%]" />
         <span className="text-xl text-white">Empresa</span>

@@ -5,7 +5,7 @@ const { validateCategoryData, handleValidationErrors } = require('../middlewares
 
 router.get('/categories', getAllCategories);
 router.get('/categories/:id', getCategoryById);
-router.get('/categories/categoria/:categoriaID', getProductsByCategory);
+router.get('/categories/products/:categoriaID', getProductsByCategory);
 router.post('/categories', validateCategoryData(), handleValidationErrors, createCategory);
 router.put('/categories/:id', validateCategoryData(), handleValidationErrors, updateCategory);
 router.delete('/categories/:id', deleteCategory);

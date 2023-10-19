@@ -1,5 +1,6 @@
 import Contact from "../pages/Contact";
 import Home from "../pages/Home";
+import Login from "../pages/Login";
 import Products from "../pages/Products";
 
 export const routesPublic = [
@@ -14,5 +15,9 @@ export const routesPublic = [
     {
         path: "/contact",
         element: <Contact />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
     }
 ]
