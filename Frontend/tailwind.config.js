@@ -17,6 +17,9 @@ export default {
           '900': '#274481',
           '950': '#1c2c4f',
         },
+      },
+      gridTemplateColumns: {
+        'fit-10': 'repeat(auto-fit, minmax(150px, 1fr))',
       }
     },
   },

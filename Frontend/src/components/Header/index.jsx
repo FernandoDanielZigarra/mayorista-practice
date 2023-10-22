@@ -50,7 +50,6 @@ function Header() {
   }
 
   return (
-    
       <header className="fixed bottom-0 w-full bg-mariner-800 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2">
         <nav className='w-full '>
           <ul className="flex justify-evenly gap-6">
@@ -63,7 +62,7 @@ function Header() {
               </NavLink>
             </li>
             <li className="rounded-[50%] flex justify-center items-center ">
-            <NavLink to={"/products"} className={className}>
+              <NavLink to={"/products"} className={className}>
                 <TbPaperBag className="text-2xl" />
                 <span className="text-sm">
                   Productos
@@ -81,7 +80,6 @@ function Header() {
           </ul>
         </nav>
       </header>
-    
   );
 }
 
