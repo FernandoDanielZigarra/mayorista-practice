@@ -18,7 +18,7 @@ const images = [
   },
 ];
 
-function Carrousel() {
+function Carrousel3() {
   const listRef = useRef();
   const [courrentIndex, setCourrentIndex] = useState(0);
 

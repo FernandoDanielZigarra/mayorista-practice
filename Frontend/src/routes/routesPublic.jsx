@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
 import {Navigate} from "react-router-dom";
+import ResultSearch from "../pages/ResultSearch";
 
 export const routesPublic = [
     {
@@ -25,6 +26,10 @@ export const routesPublic = [
     {
         path: "/product/:id",
         element: <ProductDetail />,
+    },
+    {
+        path:"/search/:query",
+        element: <ResultSearch />
     },
     {
         path: "*",
