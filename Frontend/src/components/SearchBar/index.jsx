@@ -27,25 +27,26 @@ function SearchBar() {
   };
 
   return (
-    <form className={`fixed top-4 left-4 w-[90%] z-30`} action={`/search/${inputValue}`}>
-      <div ref={searchInputRef}>
+    <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30`} action={`/search/${inputValue}`}>
+      <div ref={searchInputRef} className='relative'>
         <input
           id='search'
           type="text"
           value={inputValue}
           onChange={handleInputChange}
           autoComplete="off"
-          className={`relative text-center outline-none border-2 border-mariner-500 p-4 w-[30px] h-[30px] rounded-full z-30 ${openSearch ? 'w-full pl-7 ' : ''
+          className={`text-center outline-none border-2 border-mariner-500 p-4 w-[30px] h-[30px] rounded-full z-30 ${openSearch ? 'w-full pl-7 ' : ''
             } origin-right duration-300 ease-in-out peer`}
         />
+        <label
+          htmlFor="search"
+          className='absolute left-2 top-2 text-black text-xl peer-focus:left-2 z-40'
+          onClick={() => setOpenSearch(!openSearch)}
+        >
+          {openSearch ? <RxCross2 /> : <BiSearchAlt2 />}
+        </label>
       </div>
-      <label
-        htmlFor="search"
-        className='absolute left-2 top-2 text-black text-xl peer-focus:left-2 z-40'
-        onClick={() => setOpenSearch(!openSearch)}
-      >
-        {openSearch ? <RxCross2 /> : <BiSearchAlt2 />}
-      </label>
+
     </form>
   );
 }
