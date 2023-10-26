@@ -1,4 +1,4 @@
-import LoginBg from "../../assets/login-bg.svg";
+import LoginBg from "../../assets/Login-bg.svg";
 
 function Login() {
     return (

@@ -18,7 +18,7 @@ module.exports = {
  
   getProductById: async (req, res) => {
     try {
-      const product = await Product.findById(req.params.id);
+      const product = await Product.findById(req.params.id).populate("images", "urlImage").populate("category_id", "name").select('-__v');
       res.json(product);
     } catch (error) {
       res.status(500).json({ message: error.message });
