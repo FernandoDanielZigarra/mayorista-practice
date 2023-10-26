@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <Header />
-      <SearchBar />
+      <div className="md:hidden">
+        <SearchBar />
+      </div>
       <Outlet />
       <Footer />
     </>

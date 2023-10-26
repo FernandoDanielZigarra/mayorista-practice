@@ -8,7 +8,7 @@ import {RiWhatsappFill} from "react-icons/ri";
 
 function Footer() {
   return (
-    <footer className="w-full bg-mariner-900 flex flex-col h-[13rem] pt-5">
+    <footer className="w-full bg-mariner-900 flex flex-col h-[13rem] pt-5 md:h-max">
       <div className="flex flex-col gap-1 justify-center items-center">
         <div className="flex items-center justify-center gap-[1rem]">
           <TiSocialInstagram className="text-4xl text-slate-300 border-2 rounded-full p-1 hover:transition ease duration-500 hover:border-sky-800" />
