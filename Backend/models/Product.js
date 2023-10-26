@@ -18,6 +18,22 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    fair_prices: {
+      type: Boolean,
+      default: false,
+    },
+    price_per_unit: {
+      type: Number,
+      required: true,
+    },
+    EAN: {
+      type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      required: true,
+    },
     category_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",

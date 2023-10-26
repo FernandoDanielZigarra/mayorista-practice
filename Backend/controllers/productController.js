@@ -26,7 +26,7 @@ module.exports = {
   },
   createProduct: async (req, res) => {
     try {
-      const { name, description, discount, price, category_id } = req.body;
+      const { name, description, discount, price,fair_prices,price_per_unit,EAN,type,category_id } = req.body;
       const imageDefault = "https://firebasestorage.googleapis.com/v0/b/react-firebase-example-66176.appspot.com/o/product%2Fproduct-image-default.jpg?alt=media&token=90e8c25b-f59b-4142-b424-2f332f2b47a0&_gl=1*129ue9z*_ga*MTQzNjkxNDYyMi4xNjk0MDkzODkx*_ga_CW55HF8NVT*MTY5NzA1NDkxNS4yOC4xLjE2OTcwNTcxNjguNjAuMC4w"
   
       const images = [];
@@ -59,6 +59,10 @@ module.exports = {
         description,
         discount,
         price,
+        fair_prices,
+        price_per_unit,
+        EAN,
+        type,
         category_id,
         images, // Asociamos el arreglo de imágenes al producto
       });
@@ -88,6 +92,14 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
-  }
-};
+  },
+  deleteAllProducts: async (req, res) => {
+    try {
+      await Product.deleteMany({}); // Elimina todos los productos
+      res.json({ message: 'Todos los productos han sido eliminados' });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+}
+}
 
