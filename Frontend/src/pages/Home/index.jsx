@@ -3,8 +3,10 @@ import ProductsList from "../../components/ProductsList";
 import { useFetch } from "../../hooks/useFetch";
 import Carrousel from "./Carrousel";
 
+
 function Home() {
-  const { data } = useFetch('http://localhost:3000/api/v1/products');
+  
+  const { data } = useFetch(`${import.meta.env.VITE_DEV_BASEURL}/api/v1/products`);
   const offersHome = data ? data.sort((a,b) => b.discount - a.discount).slice(0, 6) : [];
 
   return (
