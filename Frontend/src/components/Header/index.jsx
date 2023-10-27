@@ -50,13 +50,13 @@ function Header() {
   }
 
   return (
-      <header className="fixed bottom-0 w-full bg-mariner-800 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2 md:sticky md:w-full md:h-max md:rounded-none md:border-t-0 md:py-8">
+      <header className="fixed bottom-0 w-full bg-mariner-800 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2 md:sticky md:w-full md:h-max md:rounded-none md:border-t-0 md:py-6">
         <nav className='w-full px-10'>
           <ul className="flex justify-evenly gap-6 md:justify-end md:gap-14">
             <li className="rounded-[50%] flex justify-center items-center">
               <NavLink to={"/"} className={className}>
                 <AiOutlineHome className="text-2xl" />
-                <span className="text-sm md:text-xl">
+                <span className="text-sm md:text-md">
                   Inicio
                 </span>
               </NavLink>
@@ -64,7 +64,7 @@ function Header() {
             <li className="rounded-[50%] flex justify-center items-center">
               <NavLink to={"/products"} className={className}>
                 <TbPaperBag className="text-2xl" />
-                <span className="text-sm md:text-xl">
+                <span className="text-sm md:text-md">
                   Productos
                 </span>
               </NavLink>
@@ -72,7 +72,7 @@ function Header() {
             <li className="rounded-[50%] flex justify-center items-center">
               <NavLink to={"/contact"} className={className}>
                 <IoLogoWhatsapp className="text-2xl" />
-                <span className="text-sm md:text-xl">
+                <span className="text-sm md:text-md">
                   Contacto
                 </span>
               </NavLink>

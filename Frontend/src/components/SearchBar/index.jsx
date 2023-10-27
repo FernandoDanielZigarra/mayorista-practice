@@ -25,9 +25,14 @@ function SearchBar() {
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+  const quitarAcentos = (cadena) => {
+    const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
+    const result = cadena.split('').map(letra => acentos[letra] || letra).join('').toString();
+    return result;
+  }
 
   return (
-    <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30`} action={`/search/${inputValue}`}>
+    <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30`} action={`/search/${quitarAcentos(inputValue)}`}>
       <div ref={searchInputRef} className='relative'>
         <input
           id='search'

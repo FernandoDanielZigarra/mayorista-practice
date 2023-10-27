@@ -6,8 +6,13 @@ import ProductsList from '../../components/ProductsList';
 function ResultSearch() {
   const { query } = useParams();
   const { data } = useFetch('http://localhost:3000/api/v1/products');
+  const quitarAcentos = (cadena) => {
+    const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
+    const result = cadena.split('').map(letra => acentos[letra] || letra).join('').toString();
+    return result;
+  }
   const results = data ? data.filter((product) => {
-    return product.name.toLowerCase().includes(query.toLowerCase());
+    return quitarAcentos(product.name.toLowerCase()).includes(query.toLowerCase());
   }) : []
   return (
     <main className="flex flex-col bg-mariner-900 rounded-none w-full min-h-[80vh]">
@@ -18,7 +23,7 @@ function ResultSearch() {
       <h1 className="text-3xl text-center my-5 text-slate-100 underline tracking-wide">Resultados de la búsqueda</h1>
       <div className={`rounded-t-3xl pt-5 w-full shadow-[inset_0px_4px_13px_4px_#00000024] bg-slate-100 pb-5 ${results.length < 1 ? 'flex justify-center items-center flex-col' : ''} min-h-[80vh]`}>
         {
-          results.length < 1 ? (<><h2 className='text-3xl w-max text-gray-800 tracking-wide'>No se encontraron resultados</h2><img src='https://www.denmakers.in/img/no-results.png' alt='Not result found'/></>) : <ProductsList products={results} />
+          results.length < 1 ? (<><h2 className='text-3xl w-max text-gray-800 tracking-wide'>No se encontraron resultados</h2><img src='https://www.denmakers.in/img/no-results.png' alt='Not result found' /></>) : <ProductsList products={results} />
         }
       </div>
     </main>

@@ -6,7 +6,7 @@ const images = [
     {
         id: 1,
         url:
-            "https://d1ih8jugeo2m5m.cloudfront.net/2021/10/tipos-de-promociones-de-ventas-vips.jpg",
+            "https://img.freepik.com/vector-gratis/banner-venta-plana-foto_23-2149026968.jpg",
     },
     {
         id: 2,
@@ -58,8 +58,8 @@ function Carrousel() {
     }, [autoPlay, currentIndex, nextSlide]);
 
     return (
-        <div className="max-w-[1400px] h-[500px] w-[90%] m-auto mb-10 relative group">
-            <div style={{ backgroundImage: `url(${images[currentIndex].url})` }} className="w-full h-full rounded-2xl bg-center bg-cover duration-500">
+        <div className="max-w-[600px] h-[300px] w-[90%] m-auto mb-10 relative group">
+            <div style={{ backgroundImage: `url(${images[currentIndex].url})` }} className="w-full h-full rounded-lg bg-center bg-contain bg-no-repeat duration-500">
             </div>
             <div className="block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-2 text-2xl rounded-full bg-black text-white cursor-pointer border border-mariner-600">
                 <BsArrowLeftCircleFill onClick={prevSlide} size={30} />
