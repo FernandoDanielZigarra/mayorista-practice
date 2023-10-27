@@ -2,7 +2,7 @@ import ProductsList from "../../components/ProductsList";
 import { useFetch } from "../../hooks/useFetch";
 
 function Products() {
-  const { data } = useFetch(`${import.meta.env.VITE_DEV_BASEURL}/api/v1/products`);
+  const { data } = useFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products`);
   return (
     <main className="flex flex-col bg-mariner-900 rounded-none w-full">
       <div className="flex items-center justify-center flex-col gap-1 mt-3">

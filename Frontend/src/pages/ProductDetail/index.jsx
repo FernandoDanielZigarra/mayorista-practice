@@ -4,7 +4,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 function ProductDetail() {
     const { id } = useParams();
-    const { data } = useFetch(`${import.meta.env.VITE_DEV_BASEURL}/api/v1/products/${id}`)
+    const { data } = useFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products/${id}`)
     const product = data ? data : {};
     const slides = product.images ? product.images : [];
     const cartegory = product.category_id ? product.category_id.name : '';
