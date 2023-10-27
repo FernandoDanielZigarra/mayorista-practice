@@ -1,11 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { RxCross2 } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
   const [openSearch, setOpenSearch] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const searchInputRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouseUp = (event) => {
@@ -22,6 +24,10 @@ function SearchBar() {
     };
   }, [openSearch]);
 
+  const handleSubmit = () => {
+    navigate(`/search/${quitarAcentos(inputValue)}`);
+  }
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -32,7 +38,7 @@ function SearchBar() {
   }
 
   return (
-    <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30`} action={`/search/${quitarAcentos(inputValue)}`}>
+    <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30 md:static md:max-w-[400px]`} onSubmit={handleSubmit}>
       <div ref={searchInputRef} className='relative'>
         <input
           id='search'
