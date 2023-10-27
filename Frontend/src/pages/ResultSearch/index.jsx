@@ -5,7 +5,7 @@ import ProductsList from '../../components/ProductsList';
 
 function ResultSearch() {
   const { query } = useParams();
-  const { data } = useFetch('http://localhost:3000/api/v1/products');
+  const { data } = useFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products`);
   const quitarAcentos = (cadena) => {
     const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
     const result = cadena.split('').map(letra => acentos[letra] || letra).join('').toString();
