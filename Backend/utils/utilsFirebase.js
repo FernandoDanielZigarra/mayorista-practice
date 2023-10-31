@@ -1,4 +1,4 @@
-const { ref, uploadBytes, getDownloadURL, uploadBytesResumable } = require('firebase/storage')
+const { ref, getDownloadURL, uploadBytesResumable } = require('firebase/storage')
 const { storage } = require('../middlewares/uploadMiddleware')
 const uploadFile = async (file, folder, fileName) => {
     try {
