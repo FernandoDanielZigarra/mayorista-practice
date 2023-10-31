@@ -51,11 +51,9 @@ function Header() {
   }
 
   return (
-    <header className="fixed bottom-0 w-full bg-mariner-800 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2 md:sticky md:w-full md:h-max md:rounded-none md:border-t-0 md:py-6">
-      <nav className='w-full px-10'>
-        <div className="hidden md:block">
-          <SearchBar />
-        </div>
+    <header className="fixed bottom-0 w-full bg-mariner-800 flex items-center justify-between py-5 z-10 rounded-t-2xl border-white border-t-2 md:static md:w-full md:h-max md:rounded-none md:border-t-0 md:py-2">
+      <nav className='w-full px-10 md:flex md:justify-between'>
+            <SearchBar />
         <ul className="flex justify-evenly gap-6 md:justify-end md:gap-14">
           <li className="rounded-[50%] flex justify-center items-center">
             <NavLink to={"/"} className={className}>

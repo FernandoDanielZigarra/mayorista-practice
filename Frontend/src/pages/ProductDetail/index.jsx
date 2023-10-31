@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import ProductCarrousel from "../../components/ProductCarrousel";
-import { useFetch } from "../../hooks/useFetch";
+import { useCustomFetch } from "../../hooks/useCustomFetch";
 
 function ProductDetail() {
     const { id } = useParams();
-    const { data } = useFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products/${id}`)
+    const { data } = useCustomFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products/${id}`)
     const product = data ? data : {};
     const slides = product.images ? product.images : [];
     const cartegory = product.category_id ? product.category_id.name : '';

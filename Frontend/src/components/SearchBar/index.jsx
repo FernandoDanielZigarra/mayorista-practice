@@ -7,25 +7,29 @@ function SearchBar() {
   const [openSearch, setOpenSearch] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const searchInputRef = useRef(null);
+  const inputRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouseUp = (event) => {
       if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        inputRef.current.blur();
         setOpenSearch(false);
         setInputValue('');
       }
     };
 
     document.addEventListener('mouseup', handleMouseUp);
+    inputRef.current.focus();
 
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
+      setInputValue('');
     };
   }, [openSearch]);
 
   const handleSubmit = () => {
-    navigate(`/search/${quitarAcentos(inputValue)}`);
+    navigate(`/search?query=${quitarAcentos(inputValue)}`);
   }
 
   const handleInputChange = (event) => {
@@ -37,12 +41,15 @@ function SearchBar() {
     return result;
   }
 
+
   return (
     <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30 md:static md:max-w-[400px]`} onSubmit={handleSubmit}>
       <div ref={searchInputRef} className='relative'>
         <input
-          id='search'
+          id='query'
+          name='query'
           type="text"
+          ref={inputRef}
           value={inputValue}
           onChange={handleInputChange}
           autoComplete="off"

@@ -1,19 +1,20 @@
-/* import { useState } from 'react'; */
-import { useParams } from 'react-router-dom'
-import { useFetch } from '../../hooks/useFetch';
+import { useSearchParams } from 'react-router-dom'
+/* import { useCustomFetch } from '../../hooks/useCustomFetch'; */
 import ProductsList from '../../components/ProductsList';
+/* import { useEffect, useState } from 'react'; */
+import Spinner from '../../components/Spinner';
+import { useSearch } from '../../hooks/useSearch';
+import NotResult from './NotResult';
 
 function ResultSearch() {
-  const { query } = useParams();
-  const { data } = useFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products`);
-  const quitarAcentos = (cadena) => {
-    const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
-    const result = cadena.split('').map(letra => acentos[letra] || letra).join('').toString();
-    return result;
-  }
-  const results = data ? data.filter((product) => {
-    return quitarAcentos(product.name.toLowerCase()).includes(query.toLowerCase());
-  }) : []
+  /* const [result, setResult] = useState([]); */
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query');
+  const { data, isPending } = useSearch(`${import.meta.env.VITE_BASE_URL}/api/v1/products`, query)
+  const result = data ? data : [];
+  
+  if (isPending) return <Spinner />
+
   return (
     <main className="flex flex-col bg-mariner-900 rounded-none w-full min-h-[80vh]">
       <div className="flex items-center justify-center flex-col gap-1 mt-3">
@@ -21,9 +22,11 @@ function ResultSearch() {
         <span className="text-xl text-white">Empresa</span>
       </div>
       <h1 className="text-3xl text-center my-5 text-slate-100 underline tracking-wide">Resultados de la búsqueda</h1>
-      <div className={`rounded-t-3xl pt-5 w-full shadow-[inset_0px_4px_13px_4px_#00000024] bg-slate-100 pb-5 ${results.length < 1 ? 'flex justify-center items-center flex-col' : ''} min-h-[80vh]`}>
+      <div className='rounded-t-3xl pt-5 w-full shadow-[inset_0px_4px_13px_4px_#00000024] bg-slate-100 pb-5'>
         {
-          results.length < 1 ? (<><h2 className='text-3xl w-max text-gray-800 tracking-wide'>No se encontraron resultados</h2><img src='https://www.denmakers.in/img/no-results.png' alt='Not result found' /></>) : <ProductsList products={results} />
+
+          result.length > 0 ? <ProductsList products={result} /> : <NotResult />
+
         }
       </div>
     </main>
@@ -31,3 +34,6 @@ function ResultSearch() {
 }
 
 export default ResultSearch;
+
+
+/* (<><h2 className='text-3xl w-max text-gray-800 tracking-wide'>No se encontraron resultados</h2><img src='https://www.denmakers.in/img/no-results.png' alt='Not result found' /></>) */
