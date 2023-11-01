@@ -2,7 +2,7 @@ const Product = require('../models/Product');
 const Image = require('../models/Image');
 const path = require('path')
 const { uploadFile } = require('../utils/utilsFirebase');
-
+const { deleteFile } = require('../utils/deleteFirebase')
 
 
 module.exports = {
@@ -103,15 +103,36 @@ module.exports = {
   },
   deleteProduct: async (req, res) => {
     try {
-      const product = await Product.findByIdAndDelete(req.params.id);
-      res.json(product);
+      const productId = req.params.id;
+
+      const product = await Product.findById(productId);
+
+      if (!product) {
+        return res.status(404).json({ message: 'Producto no encontrado' });
+      }
+
+      for (const image of product.images) {
+        await deleteFile('product', image.filename);
+      }
+
+      const deletedProduct = await Product.findByIdAndDelete(productId);
+
+      if (!deletedProduct) {
+        return res.status(404).json({ message: 'Producto no encontrado en la base de datos' });
+      }
+
+      product.images = [];
+
+      await product.save();
+
+      res.json({ message: 'Producto y imágenes asociadas eliminadas correctamente' });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   },
   deleteAllProducts: async (req, res) => {
     try {
-      await Product.deleteMany({}); // Elimina todos los productos
+      await Product.deleteMany({}); 
       res.json({ message: 'Todos los productos han sido eliminados' });
     } catch (error) {
       res.status(500).json({ message: error.message });
