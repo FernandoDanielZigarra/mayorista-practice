@@ -28,7 +28,7 @@ export const routesPublic = [
         element: <ProductDetail />,
     },
     {
-        path:"/search",
+        path:"/search/:query",
         element: <ResultSearch />
     },
     {

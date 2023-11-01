@@ -13,7 +13,7 @@ function SearchBar() {
   useEffect(() => {
     const handleMouseUp = (event) => {
       if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
-        inputRef.current.blur();
+        inputRef.current.value = "";
         setOpenSearch(false);
         setInputValue('');
       }
@@ -28,12 +28,16 @@ function SearchBar() {
     };
   }, [openSearch]);
 
-  const handleSubmit = () => {
-    navigate(`/search?query=${quitarAcentos(inputValue)}`);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    inputRef.current.value = "";
+    setOpenSearch(false);
+    setInputValue('');
+    navigate(`/search/${quitarAcentos(inputValue)}`);
   }
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const handleInputChange = () => {
+    setInputValue(inputRef.current.value);
   };
   const quitarAcentos = (cadena) => {
     const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
@@ -64,7 +68,6 @@ function SearchBar() {
           {openSearch ? <RxCross2 /> : <BiSearchAlt2 />}
         </label>
       </div>
-
     </form>
   );
 }
