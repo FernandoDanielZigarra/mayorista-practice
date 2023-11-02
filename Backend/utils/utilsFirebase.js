@@ -1,4 +1,4 @@
-const { ref, uploadBytes, getDownloadURL, uploadBytesResumable } = require('firebase/storage')
+const { ref, deleteObject, getDownloadURL, uploadBytesResumable } = require('firebase/storage')
 const { storage } = require('../middlewares/uploadMiddleware')
 const uploadFile = async (file, folder, fileName) => {
     try {
@@ -14,4 +14,16 @@ const uploadFile = async (file, folder, fileName) => {
     }
 }
 
-module.exports = {uploadFile}
+const deleteFile = async (folder, fileName) => {
+    try {
+        const imageRef = ref(storage, `${folder}/${fileName}`);
+        await deleteObject(imageRef);
+        return `Imagen ${fileName} en la carpeta ${folder} eliminada correctamente.`
+    } catch (error) {
+        console.error('Error al eliminar la imagen:', error);
+    }
+}
+
+
+
+module.exports = { uploadFile, deleteFile }

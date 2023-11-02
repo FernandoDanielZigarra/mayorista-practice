@@ -1,8 +1,8 @@
+require('dotenv').config();
 const Product = require('../models/Product');
 const Image = require('../models/Image');
 const path = require('path')
-const { uploadFile } = require('../utils/utilsFirebase');
-const { deleteFile } = require('../utils/deleteFirebase')
+const { uploadFile, deleteFile } = require('../utils/utilsFirebase');
 
 
 module.exports = {
@@ -34,7 +34,7 @@ module.exports = {
       if (req.files) {
         for (const file of req.files) {
           const fileName = `${"Product" + '-' + Date.now() + path.extname(file.originalname)}`;
-          const uploadImage = await uploadFile(file, "product", fileName);
+          const uploadImage = await uploadFile(file, process.env.FOLDER_FIREBASE, fileName);
 
           const newImage = new Image({
             filename: fileName,
@@ -105,14 +105,15 @@ module.exports = {
     try {
       const productId = req.params.id;
 
-      const product = await Product.findById(productId);
+      const product = await Product.findById(productId).populate("images", "filename").select('-__v');
 
       if (!product) {
         return res.status(404).json({ message: 'Producto no encontrado' });
       }
 
       for (const image of product.images) {
-        await deleteFile('product', image.filename);
+        await Image.findByIdAndDelete(image._id);
+        deleteFile(process.env.FOLDER_FIREBASE, image.filename);
       }
 
       const deletedProduct = await Product.findByIdAndDelete(productId);
@@ -121,18 +122,15 @@ module.exports = {
         return res.status(404).json({ message: 'Producto no encontrado en la base de datos' });
       }
 
-      product.images = [];
-
-      await product.save();
-
-      res.json({ message: 'Producto y imágenes asociadas eliminadas correctamente' });
+      res.json({ message: 'Producto e imágenes asociadas eliminadas correctamente' });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
   },
   deleteAllProducts: async (req, res) => {
     try {
-      await Product.deleteMany({}); 
+      await Product.deleteMany({});
+      await Image.deleteMany({});
       res.json({ message: 'Todos los productos han sido eliminados' });
     } catch (error) {
       res.status(500).json({ message: error.message });
