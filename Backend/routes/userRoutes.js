@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, deleteUser, login } = require('../controllers/userControllers'); // Asegúrate de proporcionar la ruta correcta
+const { createUser, deleteUser, login } = require('../controllers/userControllers'); 
 
 // Rutas para crear, borrar usuarios y realizar inicio de sesión
 router.post('/usuarios', createUser);
