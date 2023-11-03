@@ -55,6 +55,7 @@ function Admin() {
             </div>
             <ListAdmin products={filteredProductList} deleteProduct={deleteProduct} />
         </main>
+        
     )
 }
 
