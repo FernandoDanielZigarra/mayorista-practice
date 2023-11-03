@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { getAllUsers, createUser, loginUser } = require('../controllers/userControllers');
-const authenticate = require('../middlewares/authMiddleware');
+const { createUser, deleteUser, login } = require('../controllers/userControllers'); // Asegúrate de proporcionar la ruta correcta
 
-// Rutas públicas (sin autenticación)
-router.post('/login', loginUser); // Endpoint para iniciar sesión
-
-// Rutas protegidas (requieren autenticación)
-// router.use(authenticate); // Comenta temporalmente el uso del middleware
-
-// Nueva ruta que requiere autenticación (cuando estés listo)
-router.get('/', authenticate, getAllUsers); // Obtener todos los usuarios
-router.post('/', authenticate, createUser); // Crear un nuevo usuario
+// Rutas para crear, borrar usuarios y realizar inicio de sesión
+router.post('/usuarios', createUser);
+router.delete('/usuarios/:id', deleteUser);
+router.post('/login', login);
 
 module.exports = router;
