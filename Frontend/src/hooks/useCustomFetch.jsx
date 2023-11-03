@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-export const useFetch = (url) => {
+export const useCustomFetch = (url) => {
   const [data, setData] = useState(null);
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
-      setIsPending(true);
+      /* setIsPending(true); */
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(response.statusText);
-        const json = await response.json();
+        const response = await axios.get(url);
+        if (!response.data) throw new Error(response.status);
         setIsPending(false);
-        setData(json);
+        setData(response.data);
         setError(null);
       } catch (error) {
         setError(`${error} Could not Fetch Data `);

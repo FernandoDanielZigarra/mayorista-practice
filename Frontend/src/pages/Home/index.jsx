@@ -1,12 +1,12 @@
 /* import ProductCard from "../../components/ProductCard"; */
 import ProductsList from "../../components/ProductsList";
-import { useFetch } from "../../hooks/useFetch";
+import { useCustomFetch } from "../../hooks/useCustomFetch";
 import Carrousel from "./Carrousel";
 
 
 function Home() {
   
-  const { data } = useFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products`);
+  const { data } = useCustomFetch(`${import.meta.env.VITE_BASE_URL}/api/v1/products`);
   const offersHome = data ? data.sort((a,b) => b.discount - a.discount).slice(0, 6) : [];
 
   return (

@@ -7,29 +7,37 @@ function SearchBar() {
   const [openSearch, setOpenSearch] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const searchInputRef = useRef(null);
+  const inputRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleMouseUp = (event) => {
       if (searchInputRef.current && !searchInputRef.current.contains(event.target)) {
+        inputRef.current.value = "";
         setOpenSearch(false);
         setInputValue('');
       }
     };
 
     document.addEventListener('mouseup', handleMouseUp);
+    inputRef.current.focus();
 
     return () => {
       document.removeEventListener('mouseup', handleMouseUp);
+      setInputValue('');
     };
   }, [openSearch]);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    inputRef.current.value = "";
+    setOpenSearch(false);
+    setInputValue('');
     navigate(`/search/${quitarAcentos(inputValue)}`);
   }
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+  const handleInputChange = () => {
+    setInputValue(inputRef.current.value);
   };
   const quitarAcentos = (cadena) => {
     const acentos = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U' };
@@ -37,12 +45,15 @@ function SearchBar() {
     return result;
   }
 
+
   return (
     <form className={`fixed top-0 left-0 w-[100%] px-5 py-4 z-30 md:static md:max-w-[400px]`} onSubmit={handleSubmit}>
       <div ref={searchInputRef} className='relative'>
         <input
-          id='search'
+          id='query'
+          name='query'
           type="text"
+          ref={inputRef}
           value={inputValue}
           onChange={handleInputChange}
           autoComplete="off"
@@ -57,7 +68,6 @@ function SearchBar() {
           {openSearch ? <RxCross2 /> : <BiSearchAlt2 />}
         </label>
       </div>
-
     </form>
   );
 }
