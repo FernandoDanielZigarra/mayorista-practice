@@ -3,8 +3,10 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
-import {Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import ResultSearch from "../pages/ResultSearch";
+import Admin from "../pages/Admin";
+import FormProduct from "../components/FormProduct";
 
 export const routesPublic = [
     {
@@ -28,11 +30,19 @@ export const routesPublic = [
         element: <ProductDetail />,
     },
     {
-        path:"/search/:query",
+        path: "/search/:query",
         element: <ResultSearch />
     },
     {
         path: "*",
         element: <Navigate to="/" />,
+    },
+    {
+        path: "/admin",
+        element: <Admin />
+    },
+    {
+        path: "/admin/product/:id",
+        element: <FormProduct />
     }
 ]

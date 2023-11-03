@@ -8,7 +8,7 @@ function ProductCard({ product }) {
       <div className="h-[55%] w-full">
         <img src={product.images[0].urlImage} alt={product.name} className="h-full w-full object-contain" />
       </div>
-      <span className="text-lg text-slate-900 w-full truncate ">{product.name}</span>
+      <span className="text-lg text-slate-900 w-full truncate">{product.name}</span>
       <div className="flex items-end justify-start w-full">
         <span className="text-xl font-bold text-slate-900">${product.price - Math.round(product.price * product.discount / 100)}</span>
         <span className="text-sm text-slate-900 line-through">${product.price}</span>
