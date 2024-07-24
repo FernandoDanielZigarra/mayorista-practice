@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { AiOutlineHome } from 'react-icons/ai'
 import { TbPaperBag } from 'react-icons/tb'
 import { IoLogoWhatsapp } from 'react-icons/io5'
+import {AiOutlineShoppingCart} from 'react-icons/ai'
 import SearchBar from "../SearchBar";
 
 /* const Bars = () => {
@@ -76,6 +77,14 @@ function Header() {
               <IoLogoWhatsapp className="text-2xl" />
               <span className="text-sm md:text-md">
                 Contacto
+              </span>
+            </NavLink>
+          </li>
+          <li className="rounded-[50%] flex justify-center items-center">
+            <NavLink to={"/cart"} className={className}>
+              <AiOutlineShoppingCart className="text-2xl" />
+              <span className="text-sm md:text-md">
+                Carrito
               </span>
             </NavLink>
           </li>

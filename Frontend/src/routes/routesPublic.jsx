@@ -5,8 +5,11 @@ import ProductDetail from "../pages/ProductDetail";
 import Products from "../pages/Products";
 import { Navigate } from "react-router-dom";
 import ResultSearch from "../pages/ResultSearch";
-import Admin from "../pages/Admin";
+/* import Admin from "../pages/Admin";
 import FormProduct from "../components/FormProduct";
+import ProtectedRoute from "./ProtectedRoute"; */
+import CheckIsLogin from "./CheckIsLogin";
+import Cart from "../pages/Cart";
 
 export const routesPublic = [
     {
@@ -23,7 +26,7 @@ export const routesPublic = [
     },
     {
         path: "/login",
-        element: <Login />,
+        element: <CheckIsLogin component={Login} />,
     },
     {
         path: "/product/:id",
@@ -38,11 +41,7 @@ export const routesPublic = [
         element: <Navigate to="/" />,
     },
     {
-        path: "/admin",
-        element: <Admin />
-    },
-    {
-        path: "/admin/product/:id",
-        element: <FormProduct />
+        path: "/cart",
+        element: <Cart />,
     }
 ]

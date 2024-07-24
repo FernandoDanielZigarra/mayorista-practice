@@ -1,9 +1,6 @@
 const User = require('../models/User');
 const generateJWT = require('../utils/generateJWT');
 
-
-
-
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -15,13 +12,13 @@ const login = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      throw new Error("Usuario inexistente");
+      throw new Error("Credenciales inválidas");
     }
 
     const isPasswordValid = await user.checkedPassword(password);
 
     if (isPasswordValid) {
-      const token = generateJWT({ user });
+      const token = generateJWT({ email: user.email, isAdmin: user.isAdmin });
       return res.status(200).json({
         ok: true,
         message: "inicio de sesion exitoso",

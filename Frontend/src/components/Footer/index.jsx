@@ -18,7 +18,7 @@ function Footer() {
         </div>
         <span className="text-[1rem] text-slate-300 border-b-2 w-auto">Redes sociales</span>
       </div>
-      <p className="text-[1rem] text-slate-300 text-center">© 2023 - Todos los direchos reservados</p>
+      <p className="text-[1rem] text-slate-300 text-center">© 2023 - Todos los direchos reservados a ClickArg Comunidad</p>
     </footer>
   );
 }
